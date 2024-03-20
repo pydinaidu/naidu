@@ -1,17 +1,14 @@
-name: Latest blog post workflow
+name: Build and Deploy
+
 on:
-  schedule:
-    - cron: '25 18,17 * * *'
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  update-readme-with-blog:
-    name: Update this repos README with latest blog posts
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: naidu/blog-post-workflow@main
-        with:
-          max_post_count: "4"
-          feed_list: "https://medium.com/feed/@pydinaidu"
 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
